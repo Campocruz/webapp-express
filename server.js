@@ -9,9 +9,16 @@ const port = 3000;
 
 ///////////// IMPORT ROUTER ///////////
 const mobiesRouter = require('./router/mobiesRouter')
+
+///////////// IMPORT ROUTER ///////////
+const cors = require('cors')
+
 ///////////// IMPORT MIDDLEWARE //////
 const errorServer = require('./middleware/errorServer')
 const notFound = require('./middleware/notFound')
+
+///////////// USE CORS ///////////
+app.use(cors())
 
 ///////////// USE STATIC ASSET ///////
 app.use('/static/images', express.static('public/img'))
