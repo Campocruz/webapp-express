@@ -4,7 +4,8 @@ const port = 3000;
 
 app.use(express.static('public'))
 
-const connection = require('./database/connection')
+const mobiesRouter = require('./router/mobiesRouter')
+
 
 app.get('/', (req, res) => {
   res.json({
@@ -12,6 +13,7 @@ app.get('/', (req, res) => {
   })
 })
 
+app.use('/api/v1/mobies', mobiesRouter)
 
 app.listen(port, () => {
   console.log(`Server listening http://localhost:${port}`);
