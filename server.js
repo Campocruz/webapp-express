@@ -2,10 +2,11 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-app.use(express.static('public'))
-
 const mobiesRouter = require('./router/mobiesRouter')
+const errorServer = require('./middleware/errorServer')
+const notFound = require('./middleware/notFound')
 
+app.use(express.static('public'))
 
 app.get('/', (req, res) => {
   res.json({
@@ -14,6 +15,10 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/v1/mobies', mobiesRouter)
+
+app.use(errorServer)
+
+app.use(notFound)
 
 app.listen(port, () => {
   console.log(`Server listening http://localhost:${port}`);
