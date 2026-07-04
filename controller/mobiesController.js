@@ -1,7 +1,7 @@
-
+///////////// IMPORT CONNECTION AT DB ///////////
 const connection = require('../database/connection')
 
-// Index arrow function 
+///////////// INDEX FUNCTION ///////////
 const index = (req, res) => {
   const sql = `SELECT * FROM movies`;
   connection.query(sql, (err, results) => {
@@ -10,6 +10,7 @@ const index = (req, res) => {
   })
 }
 
+///////////// SHOW FUNCTION ///////////
 const show = (req, res) => {
   const id = parseInt(req.params.id)
   const sql = `SELECT * FROM movies WHERE id = ?`
@@ -20,23 +21,25 @@ const show = (req, res) => {
   })
 }
 
+///////////// STORE FUNCTION ///////////
 const store = (req, res) => {
-
+  res.status(500).json({ message: 'work in progress' })
 }
 
+///////////// UPDATE FUNCTION ///////////
 const update = (req, res) => {
-
+  res.status(500).json({ message: 'work in progress' })
 }
 
-
+///////////// MODIFY FUNCTION ///////////
 const modify = (req, res) => {
-
-
+  res.status(500).json({ message: 'work in progress' })
 }
 
-
+///////////// DESTROY FUNCTION ///////////
 const destroy = (req, res) => {
-
+  res.status(500).json({ message: 'work in progress' })
 }
 
+///////////// EXPORT MODULES FUNCTION ///////////
 module.exports = { index, show, store, update, modify, destroy }
