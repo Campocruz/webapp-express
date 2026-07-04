@@ -17,7 +17,14 @@ const show = (req, res) => {
   connection.query(sql, [id], (err, results) => {
     if (err) return res.status(500).json({ error: 'error db connection' })
     if (results.length === 0) return res.status(404).json({ message: 'not found' })
-    res.json(results[0])
+    const movie = results[0];
+    const reviewSql = `SELECT * FROM reviews LEFT JOIN movies ON reviews.movie_id = movies.id WHERE reviews.movie_id = ${id}`
+    connection.query(reviewSql, (err, results) => {
+      if (err) return res.status(500).json({ error: 'error db connection' })
+      if (results.length === 0) return res.status(404).json({ message: 'not found' })
+      movie.review = results;
+      res.json(movie)
+    })
   })
 }
 
