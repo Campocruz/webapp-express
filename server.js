@@ -14,7 +14,7 @@ const errorServer = require('./middleware/errorServer')
 const notFound = require('./middleware/notFound')
 
 ///////////// USE STATIC ASSET ///////
-app.use(express.static('public'))
+app.use('/static/images', express.static('public/img'))
 
 ///////////// GET FUNCION "/" ///////
 app.get('/', (req, res) => {
