@@ -18,18 +18,26 @@ const show = (req, res) => {
     if (err) return res.status(500).json({ error: 'error db connection' })
     if (results.length === 0) return res.status(404).json({ message: 'not found' })
     const movie = results[0];
-    const reviewSql = `SELECT * FROM reviews LEFT JOIN movies ON reviews.movie_id = movies.id WHERE reviews.movie_id = ${id}`
+    const reviewSql = `SELECT reviews.id, reviews.name, reviews.vote, reviews.text, reviews.created_at, reviews.updated_at
+FROM reviews
+LEFT JOIN movies ON reviews.movie_id = movies.id
+WHERE reviews.movie_id = ${id}`
     connection.query(reviewSql, (err, results) => {
       if (err) return res.status(500).json({ error: 'error db connection' })
       if (results.length === 0) return res.status(404).json({ message: 'not found' })
-      movie.review = results;
+      movie.reviews = results;
       res.json(movie)
     })
   })
 }
 
-///////////// STORE FUNCTION ///////////
+///////////// STORE BOOK FUNCTION ///////////
 const store = (req, res) => {
+  res.status(500).json({ message: 'work in progress' })
+}
+
+///////////// STORE REVIEW FUNCTION ///////////
+const storeReview = (req, res) => {
   res.status(500).json({ message: 'work in progress' })
 }
 
@@ -49,4 +57,4 @@ const destroy = (req, res) => {
 }
 
 ///////////// EXPORT MODULES FUNCTION ///////////
-module.exports = { index, show, store, update, modify, destroy }
+module.exports = { index, show, store, storeReview, update, modify, destroy }
