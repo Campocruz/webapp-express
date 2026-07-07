@@ -33,27 +33,34 @@ WHERE reviews.movie_id = ${id}`
 
 ///////////// STORE BOOK FUNCTION ///////////
 const store = (req, res) => {
-  res.status(500).json({ message: 'work in progress' })
+  res.status(501).json({ message: 'work in progress' })
 }
 
 ///////////// STORE REVIEW FUNCTION ///////////
 const storeReview = (req, res) => {
-  res.status(500).json({ message: 'work in progress' })
+  const movie_id = parseInt(req.params.id)
+  const { name, vote, text } = req.body;
+  const sql = `INSERT INTO reviews (movie_id, name, vote, text) VALUES (?,?,?,?)`
+  connection.query(sql, [movie_id, name, vote, text], (err, results) => {
+    if (err) return res.status(500).json({ error: 'db error' })
+    res.status(201).json({ message: 'save to db' })
+  })
+
 }
 
 ///////////// UPDATE FUNCTION ///////////
 const update = (req, res) => {
-  res.status(500).json({ message: 'work in progress' })
+  res.status(501).json({ message: 'work in progress' })
 }
 
 ///////////// MODIFY FUNCTION ///////////
 const modify = (req, res) => {
-  res.status(500).json({ message: 'work in progress' })
+  res.status(501).json({ message: 'work in progress' })
 }
 
 ///////////// DESTROY FUNCTION ///////////
 const destroy = (req, res) => {
-  res.status(500).json({ message: 'work in progress' })
+  res.status(501).json({ message: 'work in progress' })
 }
 
 ///////////// EXPORT MODULES FUNCTION ///////////

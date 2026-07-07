@@ -20,6 +20,9 @@ const notFound = require('./middleware/notFound')
 ///////////// USE CORS ///////////
 app.use(cors())
 
+///////////// USE BODY-PARSE ///////////
+app.use(express.json())
+
 ///////////// USE STATIC ASSET ///////
 app.use('/static/images', express.static('public/img'))
 

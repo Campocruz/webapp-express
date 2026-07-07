@@ -14,7 +14,7 @@ router.get('/', mobiesController.index);
 router.get('/:id', mobiesController.show);
 
 // Add STORE route for add a review
-router.get('/:id/review', mobiesController.storeReview)
+router.post('/:id/reviews', mobiesController.storeReview)
 
 ///////////// EXPORT MODULE ///////////
 module.exports = router;
